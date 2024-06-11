@@ -1,38 +1,122 @@
-.App {
-  text-align: center;
+*{
+  user-select: none;
+}
+body{
+  background-color: #93d2bb;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Track */
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.header{
+  background-color: #93d2bb;
+  height: max-content;
+  font-family: Mukta;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  gap: 40px;
+}
+.header>h1:first-child{
+  font-size: 3em;
+  margin: 3px 0px 0px 15px;
 }
 
-.App-link {
-  color: #61dafb;
+.options{
+  margin: auto 0px auto 0px;
+}
+.option{
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: border 3s ease;
+  position: relative;
+  font-size: 16px;
+}
+.option::after{
+  content: '';
+  width: 0%;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 2px;
+  background-color: black;
+  transition: all 1s ease;
+}
+.option:hover::after{
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.notes{
+  background-color: white;
+  width: 1449px;
+  height: 570px;
+  box-shadow: inset .1px .1px .2px black, 5px 5px 10px black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 5px;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+.notes *{
+  margin:25px 0px 0px 25px
+}
+.note{
+  border: 1px dashed black;
+  width: 220px;
+  height: 220px;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  border-radius:15px;
+  transition: all .3s ease-in-out;
+}
+.note>input{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 0.1px solid black;
+  border-radius: 2px;
+  outline: none;
+}
+.note>textarea{
+  resize: none;
+  height: 120px;
+  outline: none;
+  border: 0.1px solid black;
+  border-radius: 2px;
+}
+.note:hover{
+  transform: scale(1.09);
+}
+.plus{
+  border: 1px dashed black;
+  width: 220px;
+  height: 220px;
+  background-image: url('add.png');
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: all .3s ease-in-out;
+}
+.plus:hover{
+  transform: scale(1.09);
 }
