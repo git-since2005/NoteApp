@@ -1,3 +1,7 @@
+:root{
+  --boxSize: 262px;
+}
+
 *{
   user-select: none;
 }
@@ -11,7 +15,7 @@ body{
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #121212;
+  background: transparent;
 }
  
 /* Handle */
@@ -63,25 +67,36 @@ body{
   width: 100%;
 }
 
-.notes{
-  background-color: white;
+.section{
+  display: flex;
+  flex-direction: column;
   width: 1449px;
   height: 570px;
-  box-shadow: inset .1px .1px .2px black, 5px 5px 10px black;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 5px;
+  overflow-y: hidden;
+  /* gap: 10px; */
+}
+.notes{
+  overflow-y: scroll;
+  /* box-shadow: .1px .1px .2px black; */
   display: flex;
+  height: 570px;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 5px;
   border-radius: 10px;
-  overflow-y: scroll;
+  position: relative;
+  z-index: 1;
 }
 .notes *{
-  margin:25px 0px 0px 25px
+  margin:21px 0px 0px 21px
 }
+
 .note{
   border: 1px dashed black;
-  width: 220px;
-  height: 220px;
+  width: var(--boxSize);
+  height: var(--boxSize);
   background-position: center;
   background-size: cover;
   cursor: pointer;
@@ -94,22 +109,24 @@ body{
   border-right: none;
   border-bottom: 0.1px solid black;
   border-radius: 2px;
+  width: 202px;
   outline: none;
 }
 .note>textarea{
   resize: none;
-  height: 120px;
+  width: 202px;
+  height: 155px;
   outline: none;
   border: 0.1px solid black;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 .note:hover{
-  transform: scale(1.09);
+  transform: scale(1.05);
 }
 .plus{
   border: 1px dashed black;
-  width: 220px;
-  height: 220px;
+  width: var(--boxSize);
+  height: var(--boxSize);
   background-image: url('add.png');
   background-position: center;
   background-size: cover;
@@ -119,4 +136,13 @@ body{
 }
 .plus:hover{
   transform: scale(1.09);
+}
+
+
+.gap{
+  position: relative;
+  z-index: -10;
+  background: transparent;
+  height: 10px;
+  width: 1447px;
 }

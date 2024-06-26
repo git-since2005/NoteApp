@@ -1,40 +1,12 @@
 import './App.css';
-import {useState} from 'react'
+import React from 'react'
+import Noteboard from './Noteboard'
 
 function App() {
-  let aboutList = ["Home", "About", "Blog"]
-  const [notes, setNotes] = useState([0])
-
-  
-  function addNote(){
-    setNotes([...notes, notes.at(-1)+1])
-  }
-
-  const updateText  = (e) => {
-    setNotes(e.target.value)
-  }
 
   return (
     <>
-    <div className = "header">
-      <h1>NoteApp</h1>
-      <div className="options">
-        {
-          aboutList.map((e)=>{
-            return <button key = {e} className="option">{e}</button>
-          })
-        }
-      </div>
-    </div>
-    <div className="notes">
-      {notes.map((e)=>{
-        return <div key={e} className="note">
-          <input type="text" value = {"Note"+e.toString()} />
-          <textarea onChange = {updateText} />
-        </div>
-      })}
-      <div className="plus" onClick = {addNote}></div>
-    </div>
+      <Noteboard />
     </>
   );
 }
