@@ -1,0 +1,57 @@
+/* :root{
+    --
+} */
+*{
+    -moz-user-select: none;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.container{
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background-color: white;
+    height: 400px;
+    width: 600px;
+    display: flex;
+    border-radius: 5px;
+    justify-content: center;
+}
+img{
+    mix-blend-mode: multiply;
+    width: 400px;
+    height: 120px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: centers;
+}
+.first-child{
+    margin-top: 80px;
+}
+.inputs{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    height: 10px;
+    width: 191px;
+    margin-left: auto;
+    margin-top: 25px;
+}
+button[type=submit]{
+    width: 120px;
+    margin: 26px;
+    padding: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+h1{
+    text-align: center;
+    margin-top: 30px;
+}

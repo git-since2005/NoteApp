@@ -10,8 +10,7 @@ const JWT_SECRET = "SecureNotesEncryptItAtAnyC$st"
 
 router.post('/createuser', [
     body('name', "Enter a valid name").isLength({'min':2}),
-    body('email, "Enter a valid email"').isEmpty(),
-    body('password', "Password must be atleast 8 characters").isLength({'min':8})
+    body('email, "Enter a valid email"').isEmpty()
 ], async (req, res)=>{
     const errors = validationResult(req)
     if (!errors.isEmpty()){
@@ -23,13 +22,13 @@ router.post('/createuser', [
         if(user){
             return res.status(400).json({error:"Sorry a user with this email already exists"})
         }
-
+        let {name, email, password} = req.body
         const salt = await bcrypt.genSalt(10)
-        const secPass = await bcrypt.hash(req.body.password, salt)
+        const secPass = await bcrypt.hash(password.toString(), salt)
 
         user = await User.create({
-            'name': req.body.name,
-            "email":req.body.email,
+            'name': req.body.name.toString(),
+            "email":req.body.email.toString(),
             "password":secPass
         })
         const data = {
@@ -38,12 +37,11 @@ router.post('/createuser', [
             }
         }
         const authtoken = jwt.sign(data, JWT_SECRET)
-        console.log(authtoken)
 
         res.json(user)
 
     } catch (error) {
-        console.log(error.message)
+        console.log(error)
         res.status(500).send("Some error occured");
     }
 
@@ -54,16 +52,15 @@ router.post('/login', [
 ], async(req, res)=>{
     const errors = validationResult(req)
     if(!errors.isEmpty()){
-        console.log(req.body.password)
         return res.status(400).send({errors:errors.array()})
     }
 
     try {
-        let user = await User.findOne({email:req.body.email})
+        let user = await User.findOne({email:req.body.email.toString()})
         if(user){
-            const passCompare = await bcrypt.compare(req.body.password, user.password)
+            const passCompare = await bcrypt.compare(req.body.password.toString(), user.password)
             if (!passCompare){
-                return res.status(404).send("Password not matched.")
+                return res.status(404).json({error:"Password"})
             }
             else{
                 const data = {
@@ -72,12 +69,11 @@ router.post('/login', [
                     }
                 }
                 const authtoken = jwt.sign(data, JWT_SECRET)
-                console.log(authtoken)
                 return res.json({"authtoken":authtoken})
             }
         }
         else{
-            return res.status(400).send("Please enter correct credentials.")
+            return res.status(400).json({error:"Email"})
         }
     } catch (error) {
         console.log(error.message)
