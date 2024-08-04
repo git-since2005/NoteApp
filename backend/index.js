@@ -15,9 +15,10 @@ app.use(cors({
 
 app.use('/api/auth/', require('./routes/auth'))
 app.use('/api/notes/', require('./routes/notes'))
+app.use('/', (req, res)=>{
+    res.send("Hello World")
+})
 
-
-app.listen(port, (req, res)=>{
-    res.send(`<h1></h1>`)
+app.listen(port=>{
     console.log("Listening to port",port)
 })
