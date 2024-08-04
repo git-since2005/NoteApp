@@ -19,6 +19,6 @@ app.use('/', (req, res)=>{
     res.send("Hello World")
 })
 
-app.listen(port, (port)=>{
+app.listen(port, ()=>{
     console.log("Listening to port", port)
 })
