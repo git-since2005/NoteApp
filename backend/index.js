@@ -18,6 +18,6 @@ app.use('/api/notes/', require('./routes/notes'))
 
 
 app.listen(port, (req, res)=>{
-    res.send("Hello")
+    res.send(`<h1></h1>`)
     console.log("Listening to port",port)
 })
