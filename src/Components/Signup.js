@@ -57,12 +57,12 @@ function Signup() {
     <div className = "box">
         <form onSubmit = {onSubmit}>
         <h1>SignUp</h1>
-            <input type="text" placeholder = "Name" class="first-child inputs" name = "name" onChange = {onChange} value={credentials.name} />
-            <input type="email" name="email" class="inputs" placeholder = "Email" onChange = {onChange} value={credentials.email} style={{'border':`1px solid ${exist?'red':'black'}`}} />
+            <input type="text" placeholder = "Name"  name = "name" onChange = {onChange} value={credentials.name} />
+            <input type="email" name="email"  placeholder = "Email" onChange = {onChange} value={credentials.email} style={{'border':`1px solid ${exist?'red':'black'}`}} />
             <label htmlFor="cpassword" style={{'display':`${exist?'block':'none'}`, 'color':'red'}}>Email exists by another user</label>
-            <input type="password" name="password" class="inputs" placeholder="Password" onChange = {onChange} value={credentials.password} style={{'border':`1px solid ${color}`}} />
+            <input type="password" name="password"  placeholder="Password" onChange = {onChange} value={credentials.password} style={{'border':`1px solid ${color}`}} />
             <label htmlFor="password" style={{'display':`${color==='red'?'block':'none'}`, 'fontSize':'13px', 'color':'red'}}><br/>Password must not less than 9 characters</label>
-            <input type="password" name="cpassword" class="inputs" placeholder="Confirm password" onChange = {onChange} value={credentials.cpassword} style={{'border':`1px solid ${match?'black':'red'}`}} />
+            <input type="password" name="cpassword"  placeholder="Confirm password" onChange = {onChange} value={credentials.cpassword} style={{'border':`1px solid ${match?'black':'red'}`}} />
             <label htmlFor="cpassword" style={{'display':`${match?'none':'block'}`, 'color':'red'}}>Password does not match</label>
             <button type="submit">Submit</button>
             <Link to='/signin' style={{'color':'black', 'textDecoration':'none', 'marginLeft':'auto', 'marginRight':'auto', 'marginTop':'10px'}}>Already have an account</Link>

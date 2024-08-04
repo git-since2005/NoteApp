@@ -71,7 +71,6 @@ body{
   display: flex;
   flex-direction: column;
   width: 1449px;
-  height: 570px;
   background-color: white;
   border-radius: 10px;
   margin-left: 5px;
@@ -92,7 +91,7 @@ body{
   margin:21px 0px 0px 21px;
   border: 1px dashed black;
   width: var(--boxSize);
-  height: var(--boxSize);
+  height: max-content;
   background-position: center;
   background-size: cover;
   cursor: pointer;
@@ -130,6 +129,7 @@ body{
   cursor: default;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 10px;
 }
 .menus:has(div:hover) div:hover {
   cursor: pointer;
@@ -168,11 +168,28 @@ body{
   transform: scale(1.09);
 }
 
-
 .gap{
   position: relative;
   z-index: -10;
   background: transparent;
   height: 10px;
+  bottom: 0;
   width: 1447px;
+}
+.console{
+  margin: inset 0.5px;
+  width: max-content;
+  height: 10px;
+  margin-left: 10px;
+  margin-top: 6px;
+  color: black;
+  font-size: small;
+  font-weight: bold;
+}
+.console>img{
+  width: 15px;
+  height: 15px;
+  position: relative;
+  top: 0;
+  bottom: 0;
 }

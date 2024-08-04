@@ -1,10 +1,8 @@
 import React, {useState, useContext} from 'react'
 import '../Styles/SignIn.css'
 import {useNavigate, Link} from 'react-router-dom'
-import allContext from '../Contexts/Context'
 
 function SignIn(props) {
-    const {setToken} = useContext(allContext)
     const [credentials, setCredentials] = useState({'email':'', 'password':''})
     const [exists, setExists] = useState(true)
     const [ correct, setCorrect] = useState(true)
@@ -33,7 +31,7 @@ function SignIn(props) {
             }
             else{
                 setExists(false)
-                localStorage.setItem('token', json.authtoken)
+                sessionStorage.setItem('token', json.authtoken)
                 navigate('/notes')
             }
         })
@@ -50,7 +48,7 @@ function SignIn(props) {
             <label htmlFor="email" style={{'display':exists?'none':'block', 'color':'red'}}>Email does not exists</label>
             <input type="password" class="inputs" name="password" placeholder="Password"onChange = {onChange} value={credentials.password} style={{ 'border':`1px solid ${correct?'black':'red'}`}} />
             <label htmlFor="password" style = {{'display':correct?'none':'block', 'color':'red'}}>Password is incorrect</label>
-            <button type="submit">Submit</button>
+            <button type="submit" class="submit">Submit</button>
             <Link to='/' style={{'color':'black', 'textDecoration':'none', 'marginLeft':'auto', 'marginRight':'auto'}}>Sorry I don't have it</Link>
         </form>
     </div>

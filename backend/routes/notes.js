@@ -51,7 +51,6 @@ router.post('/updatenote/:id', fetchuser, async (req, res)=>{
 })
 
 router.delete('/deletenote/:id', fetchuser, async (req, res)=>{
-    console.log(req.params.id)
     let note = await Note.findById(req.params.id)
     if(!note){return res.status(401).send("Not found")}
 

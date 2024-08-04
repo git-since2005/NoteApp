@@ -1,12 +1,16 @@
 import "../App.css";
-import { useContext, useState, useEffect } from "react";
-import SmallNote from "./SmallNote";
-import allContext from '../Contexts/Context';
-
+import { useState, React, lazy } from "react";
+// import SmallNote from ''
+import mainLogo from '../Images/leaf.png'
+import Logo from '../Images/loading.png'
+const SmallNote = lazy(()=>import('./SmallNote'))
 function Noteboard() {
+
   let aboutList = ["Home", "About", "Blog"];
-  const contexts = useContext(allContext)
-  const {notes, setNotes, deleteNote, show} = contexts
+  // const {show} = contexts
+  let array = []
+  const [show, setShow] = useState(false)
+
   async function addNote() {
     let json;
     let response = await fetch("http://localhost:5000/api/notes/addnote", {
@@ -15,11 +19,11 @@ function Noteboard() {
         headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            "auth-token":localStorage.getItem('token')
+            "auth-token":sessionStorage.getItem('token')
         },
         body: JSON.stringify({
           title: "New Note",
-          description: "asdf",
+          description: "",
           tag: "General",
         }),
         }).then(async (e) => {
@@ -29,7 +33,54 @@ function Noteboard() {
             console.log(e);
           });
   }
-  console.log(notes)
+
+  async function findNotes(){
+    array=[]
+      let response = await fetch("http://localhost:5000/api/notes/fetchallnotes",{
+          method: "GET",
+          statusCode: 200,
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "auth-token":sessionStorage.getItem('token'),
+          }
+        }
+      ).then(async (e) => {
+          const json = await e.json();
+          for (let index = 0; index < Object.values(json).length; index++) {
+            array.push(json[index])
+          }
+          // setTimeout(() => {
+          // }, 509);
+          setShow(true)
+        })
+        .catch((e) => {
+          console.log("Internal error occured!!");
+          console.log(e);
+        });
+  }
+  if(1){
+    findNotes()
+  }
+  const [notes, setNotes] = useState(array)
+  async function deleteNote(id){
+    array = []
+    let response = await fetch('http://localhost:5000/api/notes/deletenote/'+id,{
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "auth-token":sessionStorage.getItem('token')
+        }
+    }).then(async (e)=>{
+      setShow(false)
+      findNotes()
+      setShow(true)
+    }).catch((e)=>{
+      console.log("error occured!!!")
+    })
+    return array
+  }
   return (
     <>
       <div className="header">
@@ -44,15 +95,21 @@ function Noteboard() {
           })}
         </div>
       </div>
-      <div className="section">
-        {<div className="notes">
+      <div className="section" style={{'height':window.innerHeight-90}}>
+        { <div className="notes">
           {show && notes.map((e) => {
-            return <SmallNote key={e._id} id={e._id} />;
+            return <SmallNote key={e._id} deleteNote={deleteNote} id={e._id} title={e.title} desc = {e.description} setNotes={setNotes} notes={notes} />;
           })}
           <div className="plus" onClick={addNote}></div>
         </div>}
         <div className="gap"></div>
       </div>
+      {/* <Suspense fallback={<p>Fetching all notes</p>}> */}
+      <div className="console">
+        <img src={show?mainLogo:Logo} loading="lazy" alt="" />
+        {show?' All notes loaded':' Loading all notes'}
+      </div>
+      {/* </Suspense> */}
     </>
   );
 }

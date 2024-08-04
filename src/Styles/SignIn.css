@@ -3,7 +3,7 @@
 } */
 *{
     -moz-user-select: none;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: sans-serif;
 }
 .container{
     left: 50%;
@@ -31,9 +31,6 @@ form{
     flex-direction: column;
     justify-content: centers;
 }
-.first-child{
-    margin-top: 80px;
-}
 .inputs{
     padding: 10px;
     border-radius: 5px;
@@ -43,13 +40,28 @@ form{
     margin-left: auto;
     margin-top: 25px;
 }
-button[type=submit]{
+/* .submit{
     width: 120px;
     margin: 26px;
     padding: 8px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
+} */
+
+button[type=submit]{
+    width: 120px;
+    margin: 26px;
+    font-size: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    border-radius: 10px;
+    background: #abcec1;
+    height: 30px;
+    &:hover{
+        background-color: #93d2bb;
+    }
 }
 h1{
     text-align: center;
