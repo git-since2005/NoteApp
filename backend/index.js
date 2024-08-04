@@ -10,7 +10,7 @@ const port = 5000
 
 app.use(express.json())
 app.use(cors({
-    origin: "noteapp-ultimate.netlify.app"
+    origin: "https://noteapp-ultimate.netlify.app"
 }))
 
 app.use('/api/auth/', require('./routes/auth'))
