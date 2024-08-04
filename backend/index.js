@@ -17,6 +17,7 @@ app.use('/api/auth/', require('./routes/auth'))
 app.use('/api/notes/', require('./routes/notes'))
 
 
-app.listen(port, ()=>{
+app.listen(port, (req, res)=>{
+    res.send("Hello World")
     console.log("Listening to port",port)
 })
