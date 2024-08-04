@@ -22,7 +22,7 @@ function SmallNote(props) {
     }else if(instance === 'desc'){
       contents.body = JSON.stringify({title:title, description:text, tag:'General'})
     }
-    let response = fetch('http://localhost:5000/api/notes/updatenote/'+id, contents).then((e)=>{
+    let response = fetch('https://noteapp-gcol.onrender.com/api/notes/updatenote/'+id, contents).then((e)=>{
       console.log(e)
     }).catch((e)=>{
       console.log(e)
