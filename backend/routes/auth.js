@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const fetchuser = require("../middleware/fetchUser")
 
-const JWT_SECRET = "SecureNotesEncryptItAtAnyC$st"
+const JWT_SECRET = process.env.jwt
 
 router.post('/createuser', [
     body('name', "Enter a valid name").isLength({'min':2}),
