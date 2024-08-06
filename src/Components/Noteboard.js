@@ -4,7 +4,8 @@ import { useState, React, lazy } from "react";
 import mainLogo from '../Images/leaf.png'
 import Logo from '../Images/loading.png'
 const SmallNote = lazy(()=>import('./SmallNote'))
-function Noteboard() {
+export default function Noteboard() 
+{
 
   let aboutList = ["Home", "About", "Blog"];
   // const {show} = contexts
@@ -13,13 +14,13 @@ function Noteboard() {
 
   async function addNote() {
     let json;
-    let response = await fetch("https://noteapp-gcol.onrender.com/api/notes/addnote", {
+    let response = await fetch("https://noteapp-gcol.onrender.app/api/notes/addnote", {
         method: "POST",
         statusCode: 200,
         headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            "auth-token":sessionStorage.getItem('token')
+            "auth-token":localStorage.getItem('token')
         },
         body: JSON.stringify({
           title: "New Note",
@@ -36,13 +37,13 @@ function Noteboard() {
 
   async function findNotes(){
     array=[]
-      let response = await fetch("https://noteapp-gcol.onrender.com/api/notes/fetchallnotes",{
+      let response = await fetch("https://noteapp-gcol.onrender.app/api/notes/fetchallnotes",{
           method: "GET",
           statusCode: 200,
           headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            "auth-token":sessionStorage.getItem('token'),
+            "auth-token":localStorage.getItem('token'),
           }
         }
       ).then(async (e) => {
@@ -65,12 +66,12 @@ function Noteboard() {
   const [notes, setNotes] = useState(array)
   async function deleteNote(id){
     array = []
-    let response = await fetch('https://noteapp-gcol.onrender.com/api/notes/deletenote/'+id,{
+    let response = await fetch('https://noteapp-gcol.onrender.app/api/notes/deletenote/'+id,{
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          "auth-token":sessionStorage.getItem('token')
+          "auth-token":localStorage.getItem('token')
         }
     }).then(async (e)=>{
       setShow(false)
@@ -81,6 +82,7 @@ function Noteboard() {
     })
     return array
   }
+  console.log(window.innerWidth)
   return (
     <>
       <div className="header">
@@ -95,8 +97,8 @@ function Noteboard() {
           })}
         </div>
       </div>
-      <div className="section" style={{'height':window.innerHeight-90}}>
-        { <div className="notes">
+      <div className="section" style={{'maxHeight':window.innerHeight-90, 'width':window.innerWidth-11}}>
+        { <div className="notes" style={{'width':window.innerWidth-11}}>
           {show && notes.map((e) => {
             return <SmallNote key={e._id} deleteNote={deleteNote} id={e._id} title={e.title} desc = {e.description} setNotes={setNotes} notes={notes} />;
           })}
@@ -104,7 +106,6 @@ function Noteboard() {
         </div>}
         <div className="gap"></div>
       </div>
-      {/* <Suspense fallback={<p>Fetching all notes</p>}> */}
       <div className="console">
         <img src={show?mainLogo:Logo} loading="lazy" alt="" />
         {show?' All notes loaded':' Loading all notes'}
@@ -114,4 +115,4 @@ function Noteboard() {
   );
 }
 
-export default Noteboard;
+// export default Noteboard;
