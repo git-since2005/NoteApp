@@ -97,7 +97,7 @@ export default function Noteboard()
           })}
         </div>
       </div>
-      <div className="section" style={{'maxHeight':window.innerHeight-90, 'width':window.innerWidth-11}}>
+      <div className="section" style={{'minHeight':window.innerHeight-90, 'width':window.innerWidth-11}}>
         { <div className="notes" style={{'width':window.innerWidth-11}}>
           {show && notes.map((e) => {
             return <SmallNote key={e._id} deleteNote={deleteNote} id={e._id} title={e.title} desc = {e.description} setNotes={setNotes} notes={notes} />;
