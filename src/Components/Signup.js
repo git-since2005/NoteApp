@@ -13,7 +13,7 @@ function Signup() {
     const onSubmit =async (e)=>{
         e.preventDefault()
         
-        const response = await fetch("https://noteapp-gcol.onrender.app/api/auth/createuser", {
+        const response = await fetch("https://noteapp-gcol.onrender.com/api/auth/createuser", {
             method:'POST',
             statusCode: 200,
             headers:{

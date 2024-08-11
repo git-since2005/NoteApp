@@ -9,7 +9,7 @@ function SignIn(props) {
     const navigate = useNavigate();
     const onSubmit =async (e)=>{
         e.preventDefault()
-        const response = await fetch("https://noteapp-gcol.onrender.app/api/auth/login", {
+        const response = await fetch("https://noteapp-gcol.onrender.com/api/auth/login", {
             method:'POST',
             statusCode: 200,
             headers:{
@@ -31,7 +31,6 @@ function SignIn(props) {
             }
             else{
                 setExists(false)
-                alert(json.authtoken)
                 localStorage.setItem('token', json.authtoken.toString())
                 navigate('/notes')
             }

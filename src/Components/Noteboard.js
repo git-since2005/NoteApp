@@ -14,7 +14,7 @@ export default function Noteboard()
 
   async function addNote() {
     let json;
-    let response = await fetch("https://noteapp-gcol.onrender.app/api/notes/addnote", {
+    let response = await fetch("https://noteapp-gcol.onrender.com/api/notes/addnote", {
         method: "POST",
         statusCode: 200,
         headers: {
@@ -37,7 +37,7 @@ export default function Noteboard()
 
   async function findNotes(){
     array=[]
-      let response = await fetch("https://noteapp-gcol.onrender.app/api/notes/fetchallnotes",{
+      let response = await fetch("https://noteapp-gcol.onrender.com/api/notes/fetchallnotes",{
           method: "GET",
           statusCode: 200,
           headers: {
@@ -66,7 +66,7 @@ export default function Noteboard()
   const [notes, setNotes] = useState(array)
   async function deleteNote(id){
     array = []
-    let response = await fetch('https://noteapp-gcol.onrender.app/api/notes/deletenote/'+id,{
+    let response = await fetch('https://noteapp-gcol.onrender.com/api/notes/deletenote/'+id,{
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
