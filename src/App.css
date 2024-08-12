@@ -75,7 +75,6 @@ body{
   border-radius: 10px;
   margin-left: 5px;
   overflow: hidden;
-  /* gap: 10px; */
 }
 .notes{
   overflow-y: scroll;
