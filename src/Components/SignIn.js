@@ -20,7 +20,6 @@ function SignIn(props) {
         }).then(async (e)=>{
             const json = await e.json()
             if(json.error !== undefined){
-                e.preventDefault()
                 console.log(json)
                 if(json.error.toString()==='Password'){
                     setCorrect(false)
