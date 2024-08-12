@@ -60,7 +60,7 @@ router.post('/login', [
         if(user){
             const passCompare = await bcrypt.compare(req.body.password.toString(), user.password)
             if (!passCompare){
-                res.status(404).json({error:"Password"})
+                return res.json({error:"Password"})
             }
             else{
                 const data = {
@@ -73,7 +73,7 @@ router.post('/login', [
             }
         }
         else{
-            res.status(400).json({error:"Email"})
+            return res.json({error:"Email"})
         }
     } catch (error) {
         console.log(error.message)
