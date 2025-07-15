@@ -12,7 +12,7 @@ module.exports = connectToMongo
 
 
 // const { MongoClient, ServerApiVersion } = require('mongodb');
-// const uri = "mongodb+srv://abhishek_patil:lHQCzoP3pfCgjKg0@cluster0.ry8d81v.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// const uri = 
 
 // // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 // const client = new MongoClient(uri, {
